@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "vue": "^3.3.11",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.4.7"
   },
   "devDependencies": {
+    "@mdi/font": "^7.3.67",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^18.19.3",
     "@vitejs/plugin-vue": "^4.5.2",
