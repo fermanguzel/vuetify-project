@@ -12,6 +12,13 @@ const app = createApp(App);
 const vuetify = createVuetify({
   components,
   directives,
+  defaults: {
+    VBtn: { variant: "outlined" },
+    VTextField: { variant: "solo" },
+  },
+  theme: {
+    defaultTheme: "dark",
+  },
 });
 
 app.use(router);
