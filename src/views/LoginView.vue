@@ -9,6 +9,8 @@ const form = ref({
 const isLoading = ref(false);
 
 function submit() {
+  if (form.value.email === "") return;
+
   isLoading.value = true;
 
   setTimeout(() => {
@@ -16,6 +18,15 @@ function submit() {
     alert(JSON.stringify(form.value));
   }, 3000);
 }
+
+const rules = {
+  required: (value: any) => !!value || "Required.",
+  email: (value: string) => {
+    const pattern =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return pattern.test(value) || "Invalid e-mail.";
+  },
+};
 </script>
 
 <template>
@@ -34,6 +45,7 @@ function submit() {
           <v-card-item>
             <v-form @submit.prevent="submit">
               <v-text-field
+                :rules="[rules.required]"
                 prepend-inner-icon="mdi-email"
                 v-model="form.email"
                 label="Email"
@@ -41,6 +53,7 @@ function submit() {
 
               <v-text-field
                 type="password"
+                :rules="[rules.required]"
                 prepend-inner-icon="mdi-key"
                 v-model="form.password"
                 label="Password"

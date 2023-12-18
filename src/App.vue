@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { RouterView } from "vue-router";
+import { useTheme } from "vuetify";
 
 const items = [
   { title: "Click Me" },
@@ -9,10 +10,12 @@ const items = [
   { title: "Click Me 2" },
 ];
 
-const darkTheme = ref(false);
+const darkTheme = ref(true);
+const theme = useTheme();
 
 function changeTheme() {
   darkTheme.value = !darkTheme.value;
+  theme.global.name.value = darkTheme.value ? "dark" : "light";
 }
 </script>
 
@@ -29,7 +32,7 @@ function changeTheme() {
 
       <v-btn icon @click="changeTheme">
         <v-icon
-          :icon="darkTheme ? 'mdi-weather-sunny' : 'mdi-weather-night'"
+          :icon="darkTheme ? 'mdi-weather-night' : 'mdi-weather-sunny'"
         ></v-icon>
       </v-btn>
 
